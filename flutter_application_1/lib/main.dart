@@ -49,37 +49,43 @@ class TopBarMenu extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    return const Material
+    return Material
     (
-      child: Row
+      child: Container
       (
-        children:
-        [
-          Expanded
-          (
-            flex: 5,
-            child:Center
+        color: Color(0xFF007BFF),
+        height: 25,
+        child: const Row
+        (
+          children:
+          [
+            Expanded
             (
-              child: Text('One'),
+              flex: 1,
+              child: Center
+              (
+                child: Text('Services')
+              ),
             ),
-          ),
-          Expanded
-          (
-            flex: 1,
-            child: Center
+            Expanded
             (
-              child: Text('Two')
+              flex: 1,
+              child: Center
+              (
+                child: Text('Favorites')
+              ),
             ),
-          ),
-          Expanded
-          (
-            flex: 5,
-            child: Center
+            Expanded
             (
-              child: Text('Three')
+              flex: 1,
+              child: Center
+              (
+                child: Text('Most used Services')
+              ),
             ),
-          ),
-        ],
+          ],
+        )
+        
       )
     );
   }
@@ -97,19 +103,19 @@ class TopBar extends StatelessWidget
         (
           color: const Color(0xFF007BFF),
           // height: 30,
-          padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
+          padding: const EdgeInsets.fromLTRB(10, 20, 30, 0),
           child: Row
           (
             children: 
             [
               Expanded
               (
-                flex: 3,
-                child: Image.asset('assets/moi.png', height: 50,),
+                flex: 5,
+                child: Image.asset('assets/moi_logo_big.png',),
               ), // MOI Icon
               const Expanded
               (
-                flex: 12,
+                flex: 20,
                 child: SearchBar()
               ), // Search bar
               Expanded
@@ -133,54 +139,60 @@ class TopBar extends StatelessWidget
   }
 }
 
+class RewardBox extends StatelessWidget
+{
+  const RewardBox({super.key});
+  @override
+  Widget build(BuildContext context)
+  {
+    return Material
+    (
+      child: Container
+      (
+        width: 300,
+        height: 100,
+        padding: EdgeInsets.all(0),
+        decoration: BoxDecoration
+        (
+          color: Color(0xFFFFFFFFF),
+          borderRadius: BorderRadius.circular(0),
+          boxShadow:
+          [
+            BoxShadow
+            (
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 3,
+              blurRadius: 3,
+              offset: const Offset(0, 2),
+            )
+          ],
+        ),
+        child: Row
+        (
+          children: 
+          [
+            Container
+            (
+              color: Colors.red,
+              child: const Expanded
+              (
+                // flex: 1,
+                child: Text('Earn 50 points for renewing'),
+              )
+            )
+          ],
+        )
+      ),
+    );
+  }
+}
+
 class MainBody extends StatelessWidget
 {
   const MainBody({super.key});
   @override
   Widget build(BuildContext context)
   {
-    // return Material
-    // (
-    //   child: Container
-    //   (
-    //     color: const Color(0xFFF2F2F2),
-    //     alignment: Alignment.topCenter,
-    //     child: Container
-    //     (
-    //       color: const Color(0xFF007BFF),
-    //       height: 120,
-    //       padding: const EdgeInsets.all(10),
-    //       child: Row
-    //       (
-    //         children: 
-    //         [
-    //           Expanded
-    //           (
-    //             flex: 1,
-    //             child: Image.asset('assets/moi.png', height: 50,),
-    //           ),
-    //           const Expanded
-    //           (
-    //             flex: 4,
-    //             child: SearchBar()
-    //           ),
-    //           Expanded
-    //           (
-    //             flex: 1,
-    //             child: Padding
-    //             (
-    //               padding: const EdgeInsets.all(5),
-    //               child: FloatingActionButton
-    //               (
-    //                 onPressed: () {},
-    //               )
-    //             )
-    //           )
-    //         ],
-    //       ),
-    //     ),
-    //   )
-    // );
     return Material
     (
       child: Container
@@ -193,52 +205,21 @@ class MainBody extends StatelessWidget
           [
             Expanded
             (
-              child: TopBar(),
               flex: 0,
+              child: TopBar(),
             ),
             Expanded
             (
               flex: 0,
               child: TopBarMenu(),
             ),
+            Expanded
+            (
+              flex: 0,
+              child: RewardBox(),
+            )
           ],
         )
-        // child: Container
-        // (
-        //   color: const Color(0xFF007BFF),
-        //   height: 120,
-        //   padding: const EdgeInsets.fromLTRB(30, 15, 30, 0),
-        //   child: Row
-        //   (
-        //     children: 
-        //     [
-        //       Expanded
-        //       (
-        //         flex: 1,
-        //         child: Image.asset('assets/moi.png', height: 50,),
-        //       ), // MOI Icon
-        //       const Expanded
-        //       (
-        //         flex: 6,
-        //         child: SearchBar()
-        //       ), // Search bar
-        //       Expanded
-        //       (
-        //         flex: 1,
-        //         child: Padding
-        //         (
-        //           padding: const EdgeInsets.all(0),
-        //           child: IconButton
-        //           (
-        //             onPressed: () {},
-        //             icon: const Icon(Icons.mic),
-        //             iconSize: 35,
-        //           ), // Speech recognition icon
-        //         )
-        //       )
-        //     ],
-        //   ),
-        // ),
       ),
     );
   }
@@ -252,7 +233,7 @@ class SearchBar extends StatelessWidget
   {
     return Container
     (
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(0),
       child: TextField
       (
         decoration: InputDecoration
@@ -270,15 +251,3 @@ class SearchBar extends StatelessWidget
     );
   }
 }
-
-// class TestWidget extends StatelessWidget
-// {
-//   const TestWidget ({super.key});
-//   Widget build(BuildContext context)
-//   {
-//     return Material
-//     (
-//       child: 
-//     )
-//   }
-// }
