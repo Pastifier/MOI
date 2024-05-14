@@ -55,7 +55,7 @@ class TopBarMenu extends StatelessWidget
       (
         color: Color(0xFF007BFF),
         height: 25,
-        child: const Row
+        child: Row
         (
           children:
           [
@@ -64,7 +64,19 @@ class TopBarMenu extends StatelessWidget
               flex: 1,
               child: Center
               (
-                child: Text('Services')
+                child: ElevatedButton
+                (
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom
+                  (
+                    backgroundColor: Color(0xFFFFFFFF),
+                    shape: RoundedRectangleBorder
+                    (
+                      borderRadius: BorderRadius.circular(9),
+                    )
+                  ),
+                  child: const Text('Services', style: TextStyle(color: Color(0xFF82BFFF)),),
+                )
               ),
             ),
             Expanded
@@ -72,15 +84,19 @@ class TopBarMenu extends StatelessWidget
               flex: 1,
               child: Center
               (
-                child: Text('Favorites')
-              ),
-            ),
-            Expanded
-            (
-              flex: 1,
-              child: Center
-              (
-                child: Text('Most used Services')
+                child: ElevatedButton
+                (
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom
+                  (
+                    backgroundColor: Color(0xFF82BFFF),
+                    shape: RoundedRectangleBorder
+                    (
+                      borderRadius: BorderRadius.circular(9),
+                    )
+                  ),
+                  child: const Text('Most Used Services', style: TextStyle(color: Colors.white),),
+                )
               ),
             ),
           ],
@@ -103,7 +119,7 @@ class TopBar extends StatelessWidget
         (
           color: const Color(0xFF007BFF),
           // height: 30,
-          padding: const EdgeInsets.fromLTRB(10, 20, 30, 0),
+          padding: const EdgeInsets.fromLTRB(10, 30, 30, 20),
           child: Row
           (
             children: 
