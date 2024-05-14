@@ -20,4 +20,4 @@ Thirdly, a **text-to-speech on press** feature, which will make it so whenever a
 
 ## Using the app
 
-The prototype app is developed using Flutter, and our team worked together using flutlab.io, an online IDE with emulation capabilities. Simply import the contents of this repository into FlutLab and build the project. The design was made with a display size of 393 x 808.
+The prototype app is developed using Flutter, and our team worked together using flutlab.io, an online IDE with emulation capabilities. Simply import the contents of this repository into FlutLab and build the project. The design was made with a display size of 393 x 808. The prototype does not contain the proposed redesigns, it simply contains the functionality of our accessibility features.
