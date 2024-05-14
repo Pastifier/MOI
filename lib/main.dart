@@ -4,40 +4,88 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
-DateTime  getTime()
-{
+bool ttsState = false;
+
+final FlutterTts flutterTts = FlutterTts();
+Future<void> _speak(String text) async {
+  if (ttsState) {
+    // Check if TTS is enabled
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.speak(text);
+  }
+}
+
+DateTime getTime() {
   return (DateTime.now());
 }
 
-void main()
-{
-  runApp(const MaterialApp
-  (
+void main() {
+  runApp(const MaterialApp(
     home: HomeScreen(),
   ));
 }
 
-class HomeScreen extends StatelessWidget
-{
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
   @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold
-    (
+  HomeScreenState createState() => HomeScreenState();
+}
+
+class HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        // Use AppBar for better layout
+        title: const Text('Text-to-speech'),
+        actions: [
+          IconButton(
+            // TTS Toggle Button
+            icon: Icon(ttsState ? Icons.volume_up : Icons.volume_off),
+            onPressed: () {
+              setState(() {
+                ttsState = !ttsState; // Toggle the TTS state
+              });
+            },
+          ),
+        ],
+      ),
       body: const MainBody(),
-      bottomNavigationBar: BottomNavigationBar
-      (
+      bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: const
-        [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Media'),
-          BottomNavigationBarItem(icon: Icon(Icons.document_scanner_sharp), label: 'Documents'),
-          BottomNavigationBarItem(icon: Icon(Icons.question_mark), label: 'Help'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.document_scanner_sharp), label: 'Documents'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.question_mark), label: 'Help'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
+        onTap: (index) {
+          String label = '';
+          switch (index) {
+            case 0:
+              label = 'Home';
+              break;
+            case 1:
+              label = 'Media';
+              break;
+            case 2:
+              label = 'Documents';
+              break;
+            case 3:
+              label = 'Help';
+              break;
+            case 4:
+              label = 'Profile';
+              break;
+          }
+          _speak(label);
+        },
       ),
     );
   }
@@ -84,69 +132,57 @@ class MainBody extends StatelessWidget
 class TopBarMenu extends StatelessWidget
 {
   const TopBarMenu({super.key});
+
   @override
-  Widget build(BuildContext context)
-  {
-    return Material
-    (
-      child: Container
-      (
-        color: Color(0xFF007BFF),
-        height: 50,
-        child: Row
-        (
-          children:
-          [
-            Expanded
-            (
-              flex: 1,
-              child: Center
-              (
-                child: ElevatedButton
-                (
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom
-                  (
-                    backgroundColor: Color(0xFFFFFFFF),
-                    shape: RoundedRectangleBorder
-                    (
-                      borderRadius: BorderRadius.circular(30),
-                    )
-                  ),
-                  child: const Text('Services', style: TextStyle(color: Color(0xFF82BFFF)),),
-                )
-              ),
-            ),
-            Expanded
-            (
-              flex: 1,
-              child: Center
-              (
-                child: ElevatedButton
-                (
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom
-                  (
-                    backgroundColor: Color(0xFF82BFFF),
-                    shape: RoundedRectangleBorder
-                    (
-                      borderRadius: BorderRadius.circular(30),
-                    )
-                  ),
-                  child: const Text('Most Used Services', style: TextStyle(color: Colors.white),),
-                )
-              ),
-            ),
-          ],
-        )
-        
-      )
-    );
+  Widget build(BuildContext context) {
+    return Material(
+        child: Container(
+            color: Color(0xFF007BFF),
+            height: 25,
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      _speak('Services');
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFFFFFFF),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(9),
+                        )),
+                    child: const Text(
+                      'Services',
+                      style: TextStyle(color: Color(0xFF82BFFF)),
+                    ),
+                  )),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      _speak('Most Used Services');
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF82BFFF),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(9),
+                        )),
+                    child: const Text(
+                      'Most Used Services',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )),
+                ),
+              ],
+            )));
   }
 }
 
-class TopBar extends StatelessWidget
-{
+class TopBar extends StatelessWidget {
   const TopBar({super.key});
   @override
   Widget build(BuildContext context)
@@ -194,17 +230,15 @@ class TopBar extends StatelessWidget
                       iconSize: 40,
                     ),
                   ), // Speech recognition icon
-                )
-              )
-            ],
-          ),
+                ))
+          ],
         ),
+      ),
     );
   }
 }
 
-class RewardBox extends StatelessWidget
-{
+class RewardBox extends StatelessWidget {
   const RewardBox({super.key});
   @override
   Widget build(BuildContext context)
@@ -292,25 +326,19 @@ class SearchBar extends StatelessWidget
 {
   const SearchBar({super.key});
   @override
-  Widget build(BuildContext context)
-  {
-    return Container
-    (
-      padding: const EdgeInsets.all(0),
-      child: TextField
-      (
-        decoration: InputDecoration
-        (
-          contentPadding: const EdgeInsets.all(1),
-          border: OutlineInputBorder
-          (
-            borderRadius: BorderRadius.circular(20.0),
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.all(0),
+        child: TextField(
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(1),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            filled: true,
+            fillColor: Color(0xFFFFFFFF),
+            prefixIcon: const Icon(Icons.search),
           ),
-          filled: true,
-          fillColor: Color(0xFFFFFFFF),
-          prefixIcon: const Icon(Icons.search),
-        ),
-      )
-    );
+        ));
   }
 }
