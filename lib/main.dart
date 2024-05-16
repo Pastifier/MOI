@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'main_ai.dart';
 
 // Navigation.
 Widget currScreen = const HomeScreen();
@@ -204,10 +205,30 @@ class MainBody extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
                 child: FinePayment(),
-              )
+              ),
+              Container(
+                  child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: ElevatedButton(
+                          child: Text('AI Page'),
+                          onPressed: () {
+                            _navigateToSelectedScreen(context, SpeechScreen());
+                          })))
             ],
           )),
     );
+  }
+}
+
+class AiPage extends StatelessWidget {
+  const AiPage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+      backgroundColor: Color(0xFF007BFF),
+      title: Text('AI Page'),
+    ));
   }
 }
 
@@ -620,13 +641,12 @@ class FinesListState extends State<FinesList> {
                             onPressed: () {
                               totalPoints += updatePoints(calculateTimeTaken(
                                   issuanceTime, DateTime.now()));
+                              items.removeLast();
                               // print(totalPoints);
                             },
                             child: const Text('Pay now'),
                           )
-                        ])
-                    // child: Text('Test List item'),
-                    ));
+                        ])));
           },
           separatorBuilder: (context, index) {
             return Container(height: 50);
