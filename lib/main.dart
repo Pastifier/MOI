@@ -470,8 +470,6 @@ class ServiceCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      // child: Padding(
-      // padding: EdgeInsets.all(10),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -482,7 +480,6 @@ class ServiceCards extends StatelessWidget {
               },
               onPressed: () {
                 _speak('Traffic');
-                // _navigateToSelectedScreen(context, Fines());
                 _navigateToSelectedScreenOnTap(context, const Fines());
               },
               style: ElevatedButton.styleFrom(
