@@ -21,3 +21,9 @@ Thirdly, a **text-to-speech on press** feature, which will make it so whenever a
 ## Using the app
 
 The prototype app is developed using Flutter, and our team worked together using flutlab.io, an online IDE with emulation capabilities. Simply compress the contents of this repository to a .zip file, import that into FlutLab and build the project. The design was made with a display size of 393 x 808. The prototype does not contain the proposed redesigns, it simply contains the functionality of our accessibility features.
+
+On the top right of the screen, there is a button to turn text-to-speech on or off. The whole screen doesn't have TTS functionality, just enough to showcase the concept.
+
+The traffic services button is functional and takes the user to a new demo screen where they can simulate paying a fine. Paying the fine within 5 seconds adds 100 points to the user, within 15 seconds adds 50 points, and after 15 seconds adds no points.
+
+The AI menu button takes the user to a screen where speech input is taken. Only a few commands are recognized, such as asking to pay a traffic fine, asking if the user currently has a fine, how many points the user has, etc. The user will receive a response based on the command.  **Important note: the speech recognition may not perfectly interpret speech because of the speech-to-text function.**
