@@ -2,22 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'do_ai_command.dart'; // Import your command file
-
-// void main() => runApp(MyApp());
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'AI Assistant',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: SpeechScreen(),
-//     );
-//   }
-// }
+import 'do_ai_command.dart';
 
 class SpeechScreen extends StatefulWidget {
   @override
@@ -52,7 +37,6 @@ class _SpeechScreenState extends State<SpeechScreen> {
   void _startListening() async {
     await _speechToText.listen(
       onResult: _onSpeechResult,
-      // listenFor: Duration(minutes: 5),
     );
     setState(() {
       _isListening = true;
@@ -80,7 +64,6 @@ class _SpeechScreenState extends State<SpeechScreen> {
 
   void _generateResponse(String input) {
     _response = do_a_command(input, _speak, _response);
-    // _speak(_response);
   }
 
   @override
