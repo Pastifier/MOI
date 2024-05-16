@@ -12,7 +12,7 @@ First, a **redesign of the user interface** to have clearer categorizing of serv
 
 Secondly, an **AI assistant** that takes both text input and speech input, and is able to output both text and speech as well. As of right now, the chatbot in the app is not capable of responding to user input very well. With this new assistant, which is also easier to use for POD, we have an algorithm which will be able to process input from users and guide them to the correct page/service. This can also eliminate the need for the manual PDFs and videos in the app, which are not very user-friendly.
 
-Thirdly, a **text-to-speech on press** feature, which will make it so whenever any text is tapped on, it will be spoken aloud, which will be helpful to anyone with eyesight issues, especially senior citizens. Currently this is absent in the app.
+Thirdly, a **text-to-speech on press** feature, which will make it so whenever any text is tapped on, it will be spoken aloud, which will be helpful to anyone with eyesight issues, especially senior citizens.
 
 ## Gamification
 
